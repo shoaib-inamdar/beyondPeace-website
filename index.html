@@ -1,32 +1,44 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>User Registration</title>
 </head>
 <link rel="stylesheet" href="style.css">
 <body>
-    <form action="display.php" method="POST">
+    <form id="registrationForm" action="display.html" method="get">
+        <h2>User Registration for Event</h2>
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br><br>
+        <input type="text" id="name" name="name" required><br>
 
         <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email"><br><br>
+        <input type="email" id="email" name="email" required><br>
 
-        <label for="number">Number:</label><br>
-        <input type="number" id="number" name="number"><br><br>
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone" required><br>
 
-        <label for="options">Events:</label><br>
-        <select id="options" name="options">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-        </select><br><br>
+        <label for="events">Events:</label><br>
+        <select id="events" name="events">
+            <option value="Event 1">Event 1</option>
+            <option value="Event 2">Event 2</option>
+            <option value="Event 3">Event 3</option>
+        </select><br>
 
         <input type="submit" value="Submit">
     </form>
+
+    <script>
+        document.getElementById('registrationForm').onsubmit = function() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const events = document.getElementById('events').value;
+            const options = document.getElementById('options').value;
+
+            // Append values as URL parameters
+            this.action = `display.html?name=${name}&email=${email}&phone=${phone}&events=${events}&options=${options}`;
+        };
+    </script>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Information</title>
+</head>
+<body>
+    <h2>Submitted Information</h2>
+    <p id="name"></p>
+    <p id="email"></p>
+    <p id="phone"></p>
+    <p id="events"></p>
+
+    <button onclick="generateID()">Generate ID</button>
+    <p id="generated_id"></p>
+
+    <script>
+        // Function to generate a random 10-digit number
+        function generateID() {
+            const generatedID = Math.floor(1000000000 + Math.random() * 9000000000);
+            document.getElementById('generated_id').textContent = 'Generated ID: ' + generatedID;
+        }
+
+        // Function to retrieve submitted values from URL parameters
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Display submitted values
+        document.getElementById('name').textContent = "Name: " + getParameterByName('name');
+        document.getElementById('email').textContent = "Email: " + getParameterByName('email');
+        document.getElementById('phone').textContent = "Phone Number: " + getParameterByName('phone');
+        document.getElementById('events').textContent = "Events: " + getParameterByName('events');
+    </script>
+</body>
+</html>
